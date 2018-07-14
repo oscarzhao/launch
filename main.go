@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"os"
 
 	"github.com/oscarzhao/launcher/config"
@@ -12,15 +13,23 @@ import (
 
 var serviceName string
 
+func printHelp() {
+	fmt.Printf("Usage: launcher start <service name>\n")
+}
+
 func init() {
-	flag.StringVar(&serviceName, "service", "", "start a service")
 	flag.Parse()
+	if flag.NArg() < 2 {
+		printHelp()
+		os.Exit(1)
+	}
+	serviceName = flag.Args()[1]
 }
 
 func main() {
 	config.Initialize()
 
-	logger := logging.NewFileLogger(config.Config.Log.Path, config.Config.Log.Level)
+	logger := logging.NewStdoutLogger(config.Config.Log.Level)
 	mg := manager.NewManager(logger)
 	for _, cmdConf := range config.Config.Commands {
 		execer, err := exec.New(cmdConf.Name, cmdConf.BinaryPath, cmdConf.Args,

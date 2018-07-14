@@ -77,18 +77,9 @@ func New(name, binaryPath string, args []string, opts ...Option) (Execer, error)
 		opt(instance)
 	}
 
-	if instance.isDaemon || len(runVerbosePrefix) == 0 {
-		instance.cmd = osexec.Command(binaryPath, args...)
-	} else {
-		newPath := runVerbosePrefix[0]
-		newArgs := append(runVerbosePrefix[1:], binaryPath)
-		newArgs = append(newArgs, args...)
-
-		instance.cmd = osexec.Command(newPath, newArgs...)
-	}
+	instance.cmd = osexec.Command(binaryPath, args...)
 
 	instance.envs = append(instance.envs, os.Environ()...)
-
 	instance.cmd.Env = instance.envs
 	instance.cmd.Dir = instance.workingDir
 	instance.cmd.Stdin = os.Stdin
