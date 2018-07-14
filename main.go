@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"os"
 
 	"github.com/oscarzhao/launcher/config"
@@ -9,6 +10,13 @@ import (
 	"github.com/oscarzhao/launcher/manager"
 )
 
+var serviceName string
+
+func init() {
+	flag.StringVar(&serviceName, "service", "", "start a service")
+	flag.Parse()
+}
+
 func main() {
 	config.Initialize()
 
@@ -16,8 +24,7 @@ func main() {
 	mg := manager.NewManager(logger)
 	for _, cmdConf := range config.Config.Commands {
 		execer, err := exec.New(cmdConf.Name, cmdConf.BinaryPath, cmdConf.Args,
-			exec.WithDaemon(cmdConf.IsDaemon),
-			exec.WithEnvMapping(cmdConf.EnvMapping),
+			exec.WithEnv(cmdConf.Env),
 			exec.WithRuntimeLogger(logger),
 			exec.WithWorkDir(cmdConf.WorkingDir),
 		)
@@ -31,10 +38,8 @@ func main() {
 		}
 	}
 
-	if err := mg.StartProc("es5"); err != nil {
+	if err := mg.StartProc(serviceName); err != nil {
 		logger.Error("main", "exit with error=%s", err)
 		os.Exit(1)
-	}
-	for {
 	}
 }

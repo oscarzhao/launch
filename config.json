@@ -7,27 +7,19 @@
         {
             "name": "es5",
             "binaryPath": "D:/Software/cf/elasticsearch-5.4.0/bin/elasticsearch.bat",
-            "workingDir": "D:/Software/cf/elasticsearch-5.4.0",
-            "envMapping": {
-                "JAVA_HOME": "C:/Program Files/Java/jdk1.8.0_171"
-            },
-            "isDaemon": true,
-            "autoStart": true
+            "workingDir": "D:/Software/cf/elasticsearch-5.4.0"
         },
         {
             "name": "pyspark",
             "binaryPath": "D:/Software/cf/spark-2.3.1-bin-hadoop2.7/bin/pyspark.cmd",
             "args": ["--driver-class-path", "../../elasticsearch-hadoop-5.3.0/dist/elasticsearch-spark-20_2.11-5.3.0.jar"],
             "workingDir": "D:/code/src/github.com/IBM/elasticsearch-spark-recommender",
-            "envMapping": {
-                "JAVA_HOME": "C:/Program Files/Java/jdk1.8.0_171",
-                "SPARK_HOME": "D:/Software/cf/spark-2.3.1-bin-hadoop2.7",
-                "PYSPARK_DRIVER_PYTHON": "jupyter",
-                "PYSPARK_DRIVER_PYTHON_OPTS":"lab",
-                "PYSPARK_PYTHON": "python"
-            },
-            "isDaemon": false,
-            "autoStart": false
+            "env": [
+                "SPARK_HOME=D:/Software/cf/spark-2.3.1-bin-hadoop2.7",
+                "PYSPARK_DRIVER_PYTHON=jupyter",
+                "PYSPARK_DRIVER_PYTHON_OPTS=lab",
+                "PYSPARK_PYTHON=python"
+            ]
         }
     ]
 }

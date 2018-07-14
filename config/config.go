@@ -12,13 +12,11 @@ import (
 
 // Command defines what a new command line process needs to run
 type Command struct {
-	Name       string            `json:"name"` // trigger word
-	BinaryPath string            `json:"binaryPath"`
-	Args       []string          `json:"args"`
-	WorkingDir string            `json:"workingDir"`
-	EnvMapping map[string]string `json:"envMapping"`
-	IsDaemon   bool              `json:"isDaemon"`
-	AutoStart  bool              `json:"autoStart"`
+	Name       string   `json:"name"` // trigger word
+	BinaryPath string   `json:"binaryPath"`
+	Args       []string `json:"args"`
+	WorkingDir string   `json:"workingDir"`
+	Env        []string `json:"env"`
 }
 
 type logConfiguration struct {

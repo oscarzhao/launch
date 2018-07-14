@@ -42,12 +42,10 @@ func newDefaultImpl(name, binaryPath string, args []string) *defaultImpl {
 // Option is used to modify extra configs
 type Option func(*defaultImpl)
 
-// WithEnvMapping set environment variables for binary to start
-func WithEnvMapping(envMapping map[string]string) Option {
+// WithEnv set environment variables for binary to start
+func WithEnv(envs []string) Option {
 	return func(options *defaultImpl) {
-		for k, v := range envMapping {
-			options.envs = append(options.envs, k+"="+v)
-		}
+		options.envs = append(options.envs, envs...)
 	}
 }
 
@@ -55,13 +53,6 @@ func WithEnvMapping(envMapping map[string]string) Option {
 func WithWorkDir(workDir string) Option {
 	return func(options *defaultImpl) {
 		options.workingDir = workDir
-	}
-}
-
-// WithDaemon set the process as daemon process or open a new command window
-func WithDaemon(isDaemon bool) Option {
-	return func(options *defaultImpl) {
-		options.isDaemon = isDaemon
 	}
 }
 
@@ -100,6 +91,7 @@ func New(name, binaryPath string, args []string, opts ...Option) (Execer, error)
 
 	instance.cmd.Env = instance.envs
 	instance.cmd.Dir = instance.workingDir
+	instance.cmd.Stdin = os.Stdin
 	instance.cmd.Stdout = instance.processLogger
 	instance.cmd.Stderr = instance.processLogger
 

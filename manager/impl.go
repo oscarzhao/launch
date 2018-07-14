@@ -35,16 +35,14 @@ func (sm *defaultSessionManager) StartProc(name string) error {
 		return err
 	}
 
-	go func() {
-		defer func() {
-			if r := recover(); r != nil {
-				sm.logger.Error(logTag, "sub process %s crashed, err=%s", name, r)
-			}
-		}()
-		if err := execer.Start(); err != nil {
-			sm.logger.Error(logTag, "start sub process %s fails, err=%s", name, err)
+	defer func() {
+		if r := recover(); r != nil {
+			sm.logger.Error(logTag, "sub process %s crashed, err=%s", name, r)
 		}
 	}()
+	if err := execer.Start(); err != nil {
+		sm.logger.Error(logTag, "start sub process %s fails, err=%s", name, err)
+	}
 
 	return nil
 }
@@ -59,22 +57,6 @@ func (sm *defaultSessionManager) StopProc(name string) error {
 	}
 
 	execer.Stop()
-	return nil
-}
-
-func (sm *defaultSessionManager) Run() error {
-	logTag := "defaultSessionManager.Run"
-	for name := range sm.tasks {
-		if err := sm.StartProc(name); err != nil {
-			sm.logger.Error(logTag, "fails to start proc, name=%s, err=%s", name, err)
-			return err
-		}
-	}
-	return nil
-}
-
-func (sm *defaultSessionManager) Exit() error {
-
 	return nil
 }
 

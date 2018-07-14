@@ -19,8 +19,7 @@ func TestNewExec_Simple(t *testing.T) {
 
 func TestNewExec_WithOptions(t *testing.T) {
 	execer, err := New("test", "echo", []string{`"Hello, world"`},
-		WithDaemon(false),
-		WithEnvMapping(map[string]string{"JAVA_HOME": "D:/Java/jdk1.9"}),
+		WithEnv([]string{"JAVA_HOME=D:/Java/jdk1.9"}),
 		WithProcessLogger(os.Stdout),
 		WithRuntimeLogger(logging.NewNoop()),
 	)

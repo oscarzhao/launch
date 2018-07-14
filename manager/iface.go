@@ -12,9 +12,6 @@ type SessionManager interface {
 	RegisterProc(name string, execer exec.Execer) error // register a command line task
 	StartProc(name string) error                        // start a process
 	StopProc(name string) error                         // stop a process
-
-	Run() error  // start the daemon
-	Exit() error // Stop all processes, and quit
 }
 
 // NewManager creates a default session manager instance
