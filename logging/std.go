@@ -14,9 +14,10 @@ func NewStdoutLogger(loglevel Level) Logger {
 
 // NewFileLogger creates a logger which print to file
 func NewFileLogger(filePath string, logLevel Level) Logger {
-	writer, err := os.OpenFile(filePath, os.O_APPEND|os.O_CREATE, os.ModeAppend)
+
+	writer, err := os.OpenFile(filePath, os.O_WRONLY|os.O_APPEND|os.O_CREATE, os.ModeAppend)
 	if err != nil {
-		log.Fatalf("create log file fails, err=%s\n", err)
+		log.Fatalf("create log file fails, path=%s, err=%s\n", filePath, err)
 	}
 
 	go func(fp *os.File) {

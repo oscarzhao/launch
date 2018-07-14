@@ -96,6 +96,8 @@ func New(name, binaryPath string, args []string, opts ...Option) (Execer, error)
 		instance.cmd = osexec.Command(newPath, newArgs...)
 	}
 
+	instance.envs = append(instance.envs, os.Environ()...)
+
 	instance.cmd.Env = instance.envs
 	instance.cmd.Dir = instance.workingDir
 	instance.cmd.Stdout = instance.processLogger

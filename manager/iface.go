@@ -9,9 +9,9 @@ import (
 
 // SessionManager ...
 type SessionManager interface {
-	RegisterProc(exec.Execer) error // register a command line task
-	StartProc(name string) error    // start a process
-	StopProc(name string) error     // stop a process
+	RegisterProc(name string, execer exec.Execer) error // register a command line task
+	StartProc(name string) error                        // start a process
+	StopProc(name string) error                         // stop a process
 
 	Run() error  // start the daemon
 	Exit() error // Stop all processes, and quit

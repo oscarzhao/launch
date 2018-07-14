@@ -60,5 +60,7 @@ func Initialize() {
 			Path:  filepath.Join(configDir, Config.Log.FileName),
 			Level: logging.LevelInfo,
 		}
+	} else {
+		Config.Log.Path = filepath.Join(configDir, Config.Log.FileName)
 	}
 }
