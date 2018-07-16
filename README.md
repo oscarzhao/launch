@@ -2,11 +2,11 @@
 
 Launcher is a manager on commandline apps, for example Elasticsearch, Spark, etc.
 
-# Install
+## Install
 
 Install binary into `$GOPATH/bin` with `go get -u -v github.com/oscarzhao/launcher`
 
-# Usage
+## Usage
 
 Currently, `launcher` only support one command:
 
@@ -16,3 +16,6 @@ When you run this command, `luancher` would read `~/.launcher/config.json` and r
 
 Sample config files can be found under directory `examples`.
 
+## Error check
+
+If you encountered an error while running a command, can check `~/.launcher/launcher.log` for detailed error information.
