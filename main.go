@@ -14,16 +14,16 @@ import (
 var serviceName string
 
 func printHelp() {
-	fmt.Printf("Usage: launcher start <service name>\n")
+	fmt.Printf("Usage: launch <service name>\n")
 }
 
 func init() {
 	flag.Parse()
-	if flag.NArg() < 2 {
+	if flag.NArg() < 1 {
 		printHelp()
 		os.Exit(1)
 	}
-	serviceName = flag.Args()[1]
+	serviceName = flag.Args()[0]
 }
 
 func main() {

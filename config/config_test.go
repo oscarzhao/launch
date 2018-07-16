@@ -48,5 +48,5 @@ func TestInitialize_FileNotExist(t *testing.T) {
 
 func TestConfigDirectory(t *testing.T) {
 	dir := configDirectory()
-	require.Contains(t, dir, ".launcher")
+	require.Contains(t, dir, ".launch")
 }

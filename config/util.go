@@ -12,5 +12,5 @@ var configDirectory = func() string {
 	if err != nil {
 		log.Fatalf("fails to get current user, err=%s\n", err)
 	}
-	return filepath.Join(usr.HomeDir, ".launcher")
+	return filepath.Join(usr.HomeDir, ".launch")
 }

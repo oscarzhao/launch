@@ -10,6 +10,10 @@ import (
 	"github.com/oscarzhao/launch/logging"
 )
 
+const (
+	logFileName = "launch.log"
+)
+
 // Command defines what a new command line process needs to run
 type Command struct {
 	Name       string   `json:"name"` // trigger word
@@ -51,10 +55,10 @@ func Initialize() {
 
 	if Config.Log == nil {
 		Config.Log = &logConfiguration{
-			Path:  filepath.Join(configDir, "launcher.log"),
+			Path:  filepath.Join(configDir, logFileName),
 			Level: logging.LevelInfo,
 		}
 	} else if len(Config.Log.Path) == 0 {
-		Config.Log.Path = filepath.Join(configDir, "launcher.log")
+		Config.Log.Path = filepath.Join(configDir, logFileName)
 	}
 }
