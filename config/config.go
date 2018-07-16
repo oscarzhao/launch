@@ -7,7 +7,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/oscarzhao/launcher/logging"
+	"github.com/oscarzhao/launch/logging"
 )
 
 // Command defines what a new command line process needs to run

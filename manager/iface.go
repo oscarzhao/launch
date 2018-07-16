@@ -1,8 +1,8 @@
 package manager
 
 import (
-	"github.com/oscarzhao/launcher/exec"
-	"github.com/oscarzhao/launcher/logging"
+	"github.com/oscarzhao/launch/exec"
+	"github.com/oscarzhao/launch/logging"
 )
 
 //go:generate mockery -name=SessionManager -case=underscore -dir=. -output=../z_mocks -outpkg=z_mocks

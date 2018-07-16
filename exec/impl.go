@@ -7,7 +7,7 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/oscarzhao/launcher/logging"
+	"github.com/oscarzhao/launch/logging"
 	// k8sexec "k8s.io/utils/exec"
 )
 

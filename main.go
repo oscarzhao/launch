@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/oscarzhao/launcher/config"
-	"github.com/oscarzhao/launcher/exec"
-	"github.com/oscarzhao/launcher/logging"
-	"github.com/oscarzhao/launcher/manager"
+	"github.com/oscarzhao/launch/config"
+	"github.com/oscarzhao/launch/exec"
+	"github.com/oscarzhao/launch/logging"
+	"github.com/oscarzhao/launch/manager"
 )
 
 var serviceName string
@@ -47,7 +47,7 @@ func main() {
 		}
 	}
 
-	if err := mg.StartProc(serviceName); err == nil {
+	if err := mg.StartProc(serviceName); err != nil {
 		logger.Error("main", "exit with error=%s", err)
 		fmt.Printf("Start %s failure: %s\n", serviceName, err)
 		os.Exit(1)

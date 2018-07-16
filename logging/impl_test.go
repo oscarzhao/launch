@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"testing"
 
-	"github.com/oscarzhao/launcher/logging"
+	"github.com/oscarzhao/launch/logging"
 	"github.com/stretchr/testify/require"
 )
 

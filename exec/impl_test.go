@@ -8,7 +8,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/oscarzhao/launcher/logging"
+	"github.com/oscarzhao/launch/logging"
 )
 
 func TestNewExec_Simple(t *testing.T) {
