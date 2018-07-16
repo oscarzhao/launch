@@ -1,0 +1,25 @@
+{
+    "log": {
+        "fileName": "launcher.log",
+        "level": "info"
+    },
+    "commands": [
+        {
+            "name": "es5",
+            "binaryPath": "/Users/oscarzhao/docker/cf/elasticsearch-5.4.0/bin/elasticsearch",
+            "workingDir": "/Users/oscarzhao/docker/cf/elasticsearch-5.4.0"
+        },
+        {
+            "name": "pyspark",
+            "binaryPath": "/Users/oscarzhao/docker/cf/spark-2.3.1-bin-hadoop2.7/bin/pyspark",
+            "args": ["--driver-class-path", "../../elasticsearch-hadoop-5.3.0/dist/elasticsearch-spark-20_2.11-5.3.0.jar"],
+            "workingDir": "/Users/oscarzhao/code/src/github.com/IBM/elasticsearch-spark-recommender",
+            "env": [
+                "SPARK_HOME=/Users/oscarzhao/docker/cf/spark-2.3.1-bin-hadoop2.7",
+                "PYSPARK_DRIVER_PYTHON=jupyter",
+                "PYSPARK_DRIVER_PYTHON_OPTS=lab",
+                "PYSPARK_PYTHON=python"
+            ]
+        }
+    ]
+}
