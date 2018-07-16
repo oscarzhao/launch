@@ -31,7 +31,7 @@ func (sm *defaultSessionManager) StartProc(name string) error {
 
 	execer, err := sm.getExecer(name)
 	if err != nil {
-		sm.logger.Error(logTag, "fails to get execer, name=%s, err=%s", name, err)
+		sm.logger.Warn(logTag, "fails to get execer, name=%s, err=%s", name, err)
 		return err
 	}
 

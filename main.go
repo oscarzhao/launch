@@ -29,7 +29,7 @@ func init() {
 func main() {
 	config.Initialize()
 
-	logger := logging.NewStdoutLogger(config.Config.Log.Level)
+	logger := logging.NewFileLogger(config.Config.Log.Path, config.Config.Log.Level)
 	mg := manager.NewManager(logger)
 	for _, cmdConf := range config.Config.Commands {
 		execer, err := exec.New(cmdConf.Name, cmdConf.BinaryPath, cmdConf.Args,
@@ -47,8 +47,9 @@ func main() {
 		}
 	}
 
-	if err := mg.StartProc(serviceName); err != nil {
+	if err := mg.StartProc(serviceName); err == nil {
 		logger.Error("main", "exit with error=%s", err)
+		fmt.Printf("Start %s failure: %s\n", serviceName, err)
 		os.Exit(1)
 	}
 }

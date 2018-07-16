@@ -11,7 +11,7 @@ import (
 func TestInitialize(t *testing.T) {
 	configDirectoryBak := configDirectory
 	configDirectory = func() string {
-		return "../" // config.json is under this directory
+		return "../examples" // config.json is under this directory
 	}
 	defer func() {
 		configDirectory = configDirectoryBak

@@ -1,6 +1,5 @@
 {
     "log": {
-        "fileName": "launcher.log",
         "level": "info"
     },
     "commands": [

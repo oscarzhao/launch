@@ -20,9 +20,8 @@ type Command struct {
 }
 
 type logConfiguration struct {
-	Path     string        `json:"-"`
-	FileName string        `json:"fileName"`
-	Level    logging.Level `json:"level"`
+	Path  string        `json:"path"`
+	Level logging.Level `json:"level"`
 }
 
 // Configuration ...
@@ -51,14 +50,11 @@ func Initialize() {
 	}
 
 	if Config.Log == nil {
-		if len(Config.Log.FileName) == 0 {
-			Config.Log.FileName = "launcher.log"
-		}
 		Config.Log = &logConfiguration{
-			Path:  filepath.Join(configDir, Config.Log.FileName),
+			Path:  filepath.Join(configDir, "launcher.log"),
 			Level: logging.LevelInfo,
 		}
-	} else {
-		Config.Log.Path = filepath.Join(configDir, Config.Log.FileName)
+	} else if len(Config.Log.Path) == 0 {
+		Config.Log.Path = filepath.Join(configDir, "launcher.log")
 	}
 }
