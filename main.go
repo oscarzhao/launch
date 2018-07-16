@@ -14,10 +14,11 @@ import (
 var serviceName string
 
 func printHelp() {
-	fmt.Printf("Usage: launch <service name>\n")
+	fmt.Printf("Usage of launch:\n    launch <service name>\n")
 }
 
 func init() {
+	flag.Usage = printHelp
 	flag.Parse()
 	if flag.NArg() < 1 {
 		printHelp()
