@@ -4,15 +4,18 @@
 
 ES_VERSION=5.4.0
 SPARK_VERSION=2.3.1
+PYTHON_VERSION=3.6.4
 
 installPython36() {
-    brew install pyenv
-    echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bash_profile
-    echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bash_profile
-    echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.bash_profile
-    source ~/.bash_profile
-    pyenv install 3.6.4
-    pyenv local 3.6.4
+    if [ -z "$(which pyenv)" ]; then
+        brew install pyenv
+        echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bash_profile
+        echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bash_profile
+        echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.bash_profile
+        source ~/.bash_profile
+    fi
+    pyenv install $PYTHON_VERSION
+    pyenv local $PYTHON_VERSION
 }
 
 installDep() {
