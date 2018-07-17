@@ -2,11 +2,21 @@
 
 # run this script under certain folder
 
-ES_VERSION=5.3.0
+ES_VERSION=5.4.0
 SPARK_VERSION=2.3.1
 
+installPython36() {
+    brew install pyenv
+    echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bash_profile
+    echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bash_profile
+    echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.bash_profile
+    source ~/.bash_profile
+    pyenv install 3.6.4
+    pyenv local 3.6.4
+}
+
 installDep() {
-    pip install elasticsearch numpy jupyter -q
+    pip install elasticsearch numpy jupyterlab -q
     if [ -z "$(which wget)" ]; then brew install wget; fi
     if [ -z "$(which unzip)" ]; then brew install unzip; fi
 }
@@ -89,6 +99,7 @@ Start Spark:         launch pyspark
 EOF
 }
 
+installPython36
 installDep
 downloadRepoAndData
 installES
